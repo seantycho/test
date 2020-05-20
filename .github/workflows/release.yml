@@ -8,7 +8,7 @@ on:
       - master
 
 jobs:
-  create release draft:
+  create_release_draft:
     runs-on: ubuntu-latest
     # run if head is a release branch and the pull request was merged
     if: contains(github.head_ref, 'release') && github.event.pull_request.merged == true
@@ -21,7 +21,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-  create hotfix release draft:
+  create_hotfix_release_draft:
     runs-on: ubuntu-latest
     # run if head is a hotfix branch and  and the pull request was merged
     if: contains(github.head_ref, 'hotfix') && github.event.pull_request.merged == true
