@@ -1,11 +1,9 @@
-  
 name: Bump version
 on:
   pull_request:
+    types: [closed]
     branches:
       - master
-    types:
-      - closed
 jobs:
   create_minor_tag:
     if: contains(github.head_ref, 'release') && github.event.pull_request.merged == true
