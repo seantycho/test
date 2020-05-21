@@ -3,7 +3,7 @@ name: Create new milestone
 on: 
   # Triggers when pull requests to master are closed
   pull_request:
-    types: [open]
+    types: [closed]
     branches:
       - master
 jobs:
