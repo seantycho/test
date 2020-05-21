@@ -3,8 +3,7 @@ on:
   pull_request:
     branches:
       - master
-    types:
-      - closed
+    types: [closed]
 jobs:
   create_minor_tag:
     if: contains(github.head_ref, 'release') && github.event.pull_request.merged == true
