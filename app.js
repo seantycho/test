@@ -1,3 +1,1 @@
-SLAMP
-SLAMP Blamp
-/n slampers
+slammers
