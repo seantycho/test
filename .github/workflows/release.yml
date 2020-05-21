@@ -1,11 +1,11 @@
 name: Release Drafter
 # Drafts a release and creates a tag
 on:
-  pull_request:
+  push:
     # branches to consider in the event; optional, defaults to all
     branches:
       - master
-    types: [closed]
+#     types: [closed]
 
 jobs:
   create_release_draft:
