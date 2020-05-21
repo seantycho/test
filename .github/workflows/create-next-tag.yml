@@ -39,7 +39,7 @@ jobs:
     if: contains(github.head_ref, 'hotfix') && github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v2
       with:
         fetch-depth: '1'
     - name: Bump version and push tag
@@ -49,3 +49,15 @@ jobs:
         WITH_V: true
         DEFAULT_BUMP: patch
         RELEASE_BRANCHES: master
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+      with:
+        tag_name: ${{ steps.bump_minor_version_and_push_tag.outputs.new_tag }}
+        release_name: Release ${{ steps.bump_minor_version_and_push_tag.outputs.new_tag }}
+        body: |
+          Changes in this Release
+          - 
+        draft: true
