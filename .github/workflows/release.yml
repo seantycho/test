@@ -13,7 +13,7 @@ jobs:
     # run if head is a release branch and the pull request was merged
 #     if: contains(github.head_ref, 'release') && github.event.pull_request.merged == true
     steps:
-      - run: echo $GITHUB_REF
+      - run: printenv GITHUB_REF
       # Drafts your next Release notes as Pull Requests are merged into "master"
       - uses: release-drafter/release-drafter@v5
         with:
