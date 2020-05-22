@@ -35,6 +35,8 @@ jobs:
             Changes in this Release
             - 
           draft: true
+      - name: Checkout code
+        uses: actions/checkout@v2
       - name: 'Get Previous tag'
         id: previous_tag
         uses: 'WyriHaximus/github-action-get-previous-tag@master'
