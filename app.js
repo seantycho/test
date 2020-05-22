@@ -10,3 +10,7 @@ getComputedStyleadfggadfadf
 getComputedStyleadfggadf
 addEventListenergad
 falsea
+dzfvzd
+FocusEventsdv]\sd]\v]\sd
+]\s\]bSV}|S]\
+]\Ss\
