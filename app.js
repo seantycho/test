@@ -11,6 +11,10 @@ getComputedStyleadfggadf
 addEventListenergad
 falsea
 dzfvzd
-FocusEventsdv]\sd]\v]\sd
-]\s\]bSV}|S]\
-]\Ss\
+adgadsg
+AudioBuffergadfasdg
+sd
+sd
+sd
+
+s
