@@ -1,4 +1,5 @@
-name: Bump version
+name: Release
+# Drafts a new release, tags commit to master and creates next milestone
 on:
   pull_request:
     types: [closed]
@@ -6,6 +7,7 @@ on:
       - master
 jobs:
   create_minor_tag:
+    # Runs if head_ref was a release branch
     if: contains(github.head_ref, 'release') && github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
@@ -13,16 +15,14 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: '1'
-      - name: Bump version and push tag
+      - name: Bump minor version and push tag
         id: bump_minor_version_and_push_tag
-        uses: anothrNick/github-tag-action@1.17.2
+        uses: anothrNick/github-tag-action@c170e78287f338a4af0dc49e033e50e5a072d82b # vetted hash for v1.22.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           WITH_V: true
           DEFAULT_BUMP: minor
           RELEASE_BRANCHES: master
-      # - name: Checkout code
-      #   uses: actions/checkout@v2
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -30,19 +30,25 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
         with:
           tag_name: ${{ steps.bump_minor_version_and_push_tag.outputs.new_tag }}
-          release_name: Release ${{ steps.bump_minor_version_and_push_tag.outputs.new_tag }}
+          release_name: ${{ steps.bump_minor_version_and_push_tag.outputs.new_tag }}
           body: |
-            Changes in this Release
+            ## User Facing Changes 🚀
             - 
+            
+            ## Dev Facing Changes 💾
+            - 
+            
+            ## Bug Fixes 🐛
+            - 
+            
           draft: true
-
       - name: 'Get next minor version'
         id: semvers
-        uses: 'WyriHaximus/github-action-next-semvers@master'
+        uses: 'WyriHaximus/github-action-next-semvers@ab223e23076f34bc9cd0569b1a06b7383d8108c1' # vetted hash for v0.1.0
         with:
           version: ${{ steps.bump_minor_version_and_push_tag.outputs.new_tag }}
       - name: 'Create new milestone'
-        id: createmilestone
+        id: create_milestone
         uses: 'WyriHaximus/github-action-create-milestone@master'
         with:
           title: ${{ steps.semvers.outputs.v_minor }}
@@ -58,7 +64,7 @@ jobs:
         fetch-depth: '1'
     - name: Bump patch version and push tag
       id: bump_patch_version_and_push_tag
-      uses: anothrNick/github-tag-action@1.17.2
+      uses: anothrNick/github-tag-action@c170e78287f338a4af0dc49e033e50e5a072d82b # vetted hash for v1.22.0
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         WITH_V: true
@@ -71,8 +77,8 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
       with:
         tag_name: ${{ steps.bump_patch_version_and_push_tag.outputs.new_tag }}
-        release_name: Release ${{ steps.bump_patch_version_and_push_tag.outputs.new_tag }}
+        release_name: Hotfix ${{ steps.bump_patch_version_and_push_tag.outputs.new_tag }}
         body: |
-          Changes in this Release
+          ## Bug Fixes 🐛
           - 
         draft: true
