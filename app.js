@@ -1,1 +1,12 @@
 slammers
+afe
+hadf
+historyadfh
+AudioBuffergadf
+getComputedStyleadfg
+adf
+getComputedStyleadfggadf
+getComputedStyleadfggadfadf
+getComputedStyleadfggadf
+addEventListenergad
+falsea
